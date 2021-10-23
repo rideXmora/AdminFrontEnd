@@ -63,29 +63,45 @@ function Accept () {
                     <td>{driv?.name}</td>
                 </tr>
                 <tr>
-                    <td> Profile</td>
-                    <td>{driv?.profile}</td>
+                    <td> Contact Number</td>
+                    <td>{driv?.phone}</td>
                 </tr>
                 <tr>
                     <td>Email</td>
                     <td>{driv?.email}</td>
                 </tr>
                 <tr>
-                    <td> Contact numer</td>
-                    <td>{driv?.contact_number}</td>
+                    <td> City</td>
+                    <td>{driv?.city}</td>
                 </tr>
                 <tr>
                     <td>Vehicle Number</td>
                     <td>{driv?.vehicle.number}</td>
                 </tr>
-                {/* <tr>
-                    <td>License</td>
-                    <td>{driv?.license}</td>
-                </tr> */}
-                {/* <tr>
-                    <td> Vehicle</td>
-                    <td>{driv?.vehicle}</td>
-                </tr> */}
+                <tr>
+                    <td>Driving License</td>
+                    <td>{driv?.drivingLicense}</td>
+                </tr>
+                <tr>
+                    <td> Vehicle Type</td>
+                    <td>{driv?.vehicle.vehicleType}</td>
+                </tr>
+                  <tr>
+                    <td> Model</td>
+                    <td>{driv?.vehicle.model}</td>
+                </tr>
+                  <tr>
+                    <td> License </td>
+                    <td>{driv?.vehicle.license}</td>
+                </tr>
+                  <tr>
+                    <td> Vehicle Type</td>
+                    <td>{driv?.vehicle.insurance}</td>
+                </tr>
+                  <tr>
+                    <td> Vehicle Reg No</td>
+                    <td>{driv?.vehicle.vehicleRegNo}</td>
+                </tr>
                 <tr>
                     <td> Documents</td>
                     <td>{driv?.documents}</td>
