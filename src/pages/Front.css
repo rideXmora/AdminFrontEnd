@@ -1,0 +1,27 @@
+body {
+  background-image: url("https://mobisoftinfotech.com/resources/wp-content/uploads/2019/01/uber-business-model-blog-mobisoft-infotech.jpg");
+  background-size: cover;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #74b494;
+}
+
+.itemm {
+  width: 50%;
+}
+
+li a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li :hover {
+  background-color: #74b49b;
+}

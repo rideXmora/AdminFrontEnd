@@ -6,23 +6,24 @@ import { Link } from 'react-router-dom'
 
 import Dropdown from '../dropdown/Dropdown'
 
-import ThemeMenu from '../thememenu/ThemeMenu'
+//import ThemeMenu from '../thememenu/ThemeMenu'
 
 import notifications from '../../assets/JsonData/notification.json'
 
 import user_image from '../../assets/images/tuat.png'
 
 import user_menu from '../../assets/JsonData/user_menus.json'
+import { useAuth } from '../../contexts/AuthContext'
 
 const curr_user = {
-    display_name: 'Tuat Tran',
+    display_name: 'Overall Admin',
     image: user_image
 }
 
 const renderNotificationItem = (item, index) => (
     <div className="notification-item" key={index}>
-        <i className={item.icon}></i>
-        <span>{item.content}</span>
+        <i  className={item.icon} style={{textDecoration:"none"}}></i>
+        <span style={{color:"#262e2b",textDecoration:"none"}} >{item.content}</span>
     </div>
 )
 
@@ -38,7 +39,8 @@ const renderUserToggle = (user) => (
 )
 
 const renderUserMenu =(item, index) => (
-    <Link to='/' key={index}>
+    
+    <Link style={{color:"#262e2b"}} key={index}>
         <div className="notification-item">
             <i className={item.icon}></i>
             <span>{item.content}</span>
@@ -47,6 +49,8 @@ const renderUserMenu =(item, index) => (
 )
 
 const Topnav = () => {
+    const {user} = useAuth()
+    curr_user.display_name = user.role==='RIDEX_ADMIN'? 'Overall Admin' : 'Organization Admin'
     return (
         <div className='topnav'>
             <div className="topnav__search">
@@ -65,15 +69,15 @@ const Topnav = () => {
                 <div className="topnav__right-item">
                     <Dropdown
                         icon='bx bx-bell'
-                        badge='12'
+                        badge=""
                         contentData={notifications}
                         renderItems={(item, index) => renderNotificationItem(item, index)}
-                        renderFooter={() => <Link to='/'>View All</Link>}
+                        renderFooter={() => <Link style={{color:"#262e2b"}}>View All</Link>}
                     />
                     {/* dropdown here */}
                 </div>
                 <div className="topnav__right-item">
-                    <ThemeMenu/>
+                   
                 </div>
             </div>
         </div>

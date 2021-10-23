@@ -1,22 +1,22 @@
 [
     {
         "icon": "bx bx-error",
-        "content": "Curabitur id eros quis nunc suscipit blandit"
+        "content": "some error"
     },
     {
         "icon": "bx bx-package",
-        "content": "Duis malesuada justo eu sapien elementum, in semper diam posuere"
+        "content": ""
     },
     {
-        "icon": "bx bx-cart",
-        "content": "Donec at nisi sit amet tortor commodo porttitor pretium a erat"
+        "icon": "bx bx-user",
+        "content": "prathees is a user"
     },
     {
         "icon": "bx bx-error",
-        "content": "In gravida mauris et nisi"
+        "content": "plese check errors"
     },
     {
-        "icon": "bx bx-cart",
-        "content": "Curabitur id eros quis nunc suscipit blandit"
+        "icon": "bx bx-taxi",
+        "content": "taxi not available"
     }
 ]

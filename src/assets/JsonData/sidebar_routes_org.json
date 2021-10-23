@@ -1,0 +1,29 @@
+[
+    {
+        "display_name": "Dashboard",
+        "route": "/orgAdmin/dashboard",
+        "icon": "bx bx-category-alt"
+    },
+    {
+        "display_name": "Driver Registertion",
+        "route": "/orgAdmin/driverRegister",
+        "icon": "bx bx-user-circle"
+    },
+   
+    {
+        "display_name": "Drivers",
+        "route": "/orgAdmin/driver",
+        "icon": "bx bx-user"
+    }
+    ,
+    {
+       "display_name": "Complains",
+        "route": "/orgAdmin/Complain",
+        "icon": "bx bx-error"
+    },
+     {
+       "display_name": "Fare calculation",
+        "route": "/orgAdmin/fareCalculation",
+        "icon": "bx bx-cart"
+    }
+]

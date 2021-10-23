@@ -7,6 +7,8 @@ import './sidebar.css'
 import logo from '../../assets/images/logo.png'
 
 import sidebar_items from '../../assets/JsonData/sidebar_routes.json'
+import sidebar_org_items from '../../assets/JsonData/sidebar_routes_org.json'
+import { useAuth } from '../../contexts/AuthContext'
 
 const SidebarItem = props => {
 
@@ -25,8 +27,9 @@ const SidebarItem = props => {
 }
 
 const Sidebar = props => {
-
-    const activeItem = sidebar_items.findIndex(item => item.route === props.location.pathname)
+    const activeItem = [...sidebar_items, ...sidebar_org_items].findIndex(item => item.route === props.location.pathname)
+    const {user} = useAuth()
+    const currentMenus = user.role==='RIDEX_ADMIN'?sidebar_items:sidebar_org_items
 
     return (
         <div className='sidebar'>
@@ -34,8 +37,8 @@ const Sidebar = props => {
                 <img src={logo} alt="company logo" />
             </div>
             {
-                sidebar_items.map((item, index) => (
-                    <Link to={item.route} key={index}>
+                currentMenus.map((item, index) => (
+                    <Link style={{color:"#262e2b", textDecoration:"none"}} to={item.route} key={index}>
                         <SidebarItem
                             title={item.display_name}
                             icon={item.icon}

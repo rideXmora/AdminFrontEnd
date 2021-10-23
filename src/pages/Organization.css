@@ -1,0 +1,43 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #a7d7c5;
+}
+
+li {
+  float: left;
+  border-right: 1px solid #262e2b;
+  width: 33.33%;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li :hover {
+  background-color: #74b49b;
+}
+
+li :active {
+  background-color: black;
+}
+
+.visited {
+  color: black;
+}
+.li-inner.active {
+  background-color: black;
+}
+li.active {
+  background-color: black;
+}

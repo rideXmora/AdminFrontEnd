@@ -1,0 +1,7 @@
+.form {
+  width: 70%;
+  padding: 12px;
+  border: 1px solid #5c8d89;
+  border-radius: 4px;
+  resize: vertical;
+}
