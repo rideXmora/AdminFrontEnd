@@ -21,11 +21,6 @@ function Login()  {
             console.log(data)
             if (data.token) {
                 history.push('/orgAdmin/dashboard')
-                // if(data.payments) {
-                //     history.push('/orgAdmin/dashboard')
-                // } else {
-                //     history.push('/orgAdmin/dashboard')
-                // }
             } else {
                 alert('Login failed')
             }
