@@ -6,8 +6,7 @@ import  {Link}  from 'react-router-dom';
 
 import "./Organization.css";
 //import { Link } from 'react-router-dom'
-//import organization_list from 'D:\New folder\tua-react-admin\src\assets\JsonData\organization_list.json'
-import organization_list from '../assets/JsonData/organization_list.json'
+
 
 function Organization ()  {
     const [organizations, setOrgniztions] = useState([])

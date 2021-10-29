@@ -4,15 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { auto } from 'async';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router'
-import "./FareCalculation.css";
 
 const initialData = {
+    
             ratePerMeter: '',
             rateWaitingPerMin: '',
             discount: ''
         }
 
 const FareCalculation =  () => {
+    
     const [threeData, setThreeData] = useState({...initialData, vehicleType: 'THREE_WHEELER'})
     const [carData, setCarData] = useState({...initialData, vehicleType: 'CAR'})
     const [bikeData, setBikeData] = useState({...initialData, vehicleType: 'BIKE'})
@@ -21,6 +22,7 @@ const FareCalculation =  () => {
     const [bikeErrors, setBikeErrors] = useState({})
     const {customFetch} = useAuth()
     const history = useHistory()
+    
 
     const handleThreeChange = (e) => {
         setThreeData(data=>({...data, [e.target.name]: e.target.value}))
@@ -61,6 +63,7 @@ const FareCalculation =  () => {
     }
 
     const handleSubmit = (e) => {
+        
         e.preventDefault();
 
         const errors = validate();
@@ -80,7 +83,7 @@ const FareCalculation =  () => {
             })
             .then(data=>{
                 console.log(data)
-                
+               
                 // setState(getInitialState());
             })
         }
@@ -89,9 +92,9 @@ const FareCalculation =  () => {
             <>
             <h2 style={{marginTop:auto , padding:auto}}>Fare Calculation</h2>
             <br></br>
-            <Form  className="container1" onSubmit={handleSubmit}>
-              <div className="vehicle1">
-                   <h2 className='head' >Three Wheeler Fare</h2>
+            <Form  className="container" onSubmit={handleSubmit}>
+              <div className="vehicle">
+                   <h2 >Three Wheeler Fare</h2>
                 <FormGroup className="form">
                     <Label for="ratePerMeter">Rate Per Meter</Label>
                     <Input id="ratePerMeter" type="number" value={threeData.ratePerMeter} invalid={threeErrors.ratePerMeter ? true : false} name="ratePerMeter" onChange={handleThreeChange} />

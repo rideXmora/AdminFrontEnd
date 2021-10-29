@@ -102,10 +102,7 @@ function Accept () {
                     <td> Vehicle Reg No</td>
                     <td>{driv?.vehicle.vehicleRegNo}</td>
                 </tr>
-                <tr>
-                    <td> Documents</td>
-                    <td>{driv?.documents}</td>
-                </tr>
+                
 
             </table>
             <button type='button' className='btn-btn-warning' onClick={handleEnable} >Enable</button>

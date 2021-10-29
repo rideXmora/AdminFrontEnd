@@ -1,29 +1,38 @@
  
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams , useHistory} from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Profile () {
     const {id} = useParams()
+     const {customFetch} = useAuth()
+      const history = useHistory()
   const [pas, setPas] = useState()
     useEffect(()=>{
-        fetch('http://localhost:8000/passenger/'+id)
-        .then(data => data.json())
+        customFetch('/admin/passenger/all')
         .then(data=> {
-            setPas(data)
-            console.log(data)
+            const filtered = data.find(item=>item.phone===id)
+            setPas(filtered)
+           
         
         })
-    })
-     const handleDelete = () => {
-        fetch('http://localhost:8000/passenger/'+id, {
-            method: 'DELETE'
+    },[])
+    const handleSuspend = () => {
+        customFetch('/admin/passenger/suspend', {
+            method: 'POST',
+            headers: {
+                    'Content-Type': 'application/json',
+                },
+            body: JSON.stringify({
+                phone: id,
+                suspend: true
+            })
         })
-        .then(data => data.json())
         .then(data=> {
-            setPas(data)
-            console.log(data)
+            history.push('/admin/passenger')
         })
     }
+
     return(
         <div>
             <div><h2>Profile</h2></div>
@@ -33,8 +42,12 @@ function Profile () {
                     <td>{pas?.name}</td>
                 </tr>
                 <tr>
-                    <td> Profile</td>
-                    <td>{pas?.profile}</td>
+                    <td> Rating</td>
+                    <td>{pas?.totalRating}</td>
+                </tr>
+                  <tr>
+                    <td> Total Rides</td>
+                    <td>{pas?.totalRides}</td>
                 </tr>
                 <tr>
                     <td>Email</td>
@@ -42,10 +55,10 @@ function Profile () {
                 </tr>
                 <tr>
                     <td> Contact numer</td>
-                    <td>{pas?.contact_number}</td>
+                    <td>{pas?.phone}</td>
                 </tr>
             </table>
-                <button type='button' className='btn-btn-warning' onClick={handleDelete}>Suspend</button>
+                <button type='button' className='btn-btn-warning' onClick={handleSuspend}>Suspend</button>
             
         </div>
     )

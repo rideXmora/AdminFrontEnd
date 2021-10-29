@@ -2,13 +2,15 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
+import { useAuth } from '../contexts/AuthContext';
+
 function Passenger ()  {
-    const [Passenger, setPassenger] = useState([])
+    const [pas, setPas] = useState([])
+    const {customFetch} = useAuth()
     useEffect(()=>{
-        fetch('http://localhost:8000/passenger')
-        .then(data => data.json())
+        customFetch('/admin/passenger/all')
         .then(data=> {
-            setPassenger(data)
+            setPas(data)
             console.log(data)
         })
     }, [])
@@ -25,13 +27,13 @@ function Passenger ()  {
                 </tr>
                 </thead>
                 <tbody>
-                    {Passenger.map((item, id) => (
+                    {pas.map((item, id) => (
                         <tr key={id}>
                             <td>{item.name}</td>
-                            <td>{item.contact_number}</td>
+                            <td>{item.phone}</td>
                            
                             <td>
-                                <Link style={{color:"#262e2b"}} to={'/admin/passenger/profile/'+item.email}> View more</Link>
+                                <Link style={{color:"#262e2b"}} to={'/admin/passenger/profile/'+item.phone}> View more</Link>
                             </td>
                             
                         </tr>

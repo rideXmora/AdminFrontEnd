@@ -2,11 +2,14 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
+import {useAuth} from '../../contexts/AuthContext'
+
 function Driver_org ()  {
     const [driver, setDriver] = useState([])
+    const {customFetch} = useAuth()
     useEffect(()=>{
-        fetch('http://localhost:8000/driver')
-        .then(data => data.json())
+        customFetch('/orgAdmin/drivers/registered')
+        
         .then(data=> {
             setDriver(data)
             console.log(data)
@@ -28,10 +31,10 @@ function Driver_org ()  {
                     {driver.map((item, id) => (
                         <tr key={id}>
                             <td>{item.name}</td>
-                            <td>{item.contact_number}</td>
+                            <td>{item.phone}</td>
                            
                             <td>
-                                <Link style={{color:"#262e2b"}} to={'/orgAdmin/driver/profile/'+item.email}> View more</Link>
+                                <Link style={{color:"#262e2b"}} to={'/orgAdmin/driver/profile/'+item.phone}> View more</Link>
                             </td>
                             
                         </tr>

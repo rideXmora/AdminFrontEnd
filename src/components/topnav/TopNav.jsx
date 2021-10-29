@@ -8,7 +8,6 @@ import Dropdown from '../dropdown/Dropdown'
 
 //import ThemeMenu from '../thememenu/ThemeMenu'
 
-import notifications from '../../assets/JsonData/notification.json'
 
 import user_image from '../../assets/images/tuat.png'
 
@@ -20,12 +19,7 @@ const curr_user = {
     image: user_image
 }
 
-const renderNotificationItem = (item, index) => (
-    <div className="notification-item" key={index}>
-        <i  className={item.icon} style={{textDecoration:"none"}}></i>
-        <span style={{color:"#262e2b",textDecoration:"none"}} >{item.content}</span>
-    </div>
-)
+
 
 const renderUserToggle = (user) => (
     <div className="topnav__right-user">
@@ -53,10 +47,7 @@ const Topnav = () => {
     curr_user.display_name = user.role==='RIDEX_ADMIN'? 'Overall Admin' : 'Organization Admin'
     return (
         <div className='topnav'>
-            <div className="topnav__search">
-                <input type="text" placeholder='Search here...' />
-                <i className='bx bx-search'></i>
-            </div>
+            
             <div className="topnav__right">
                 <div className="topnav__right-item">
                     {/* dropdown here */}
@@ -66,16 +57,7 @@ const Topnav = () => {
                         renderItems={(item, index) => renderUserMenu(item, index)}
                     />
                 </div>
-                <div className="topnav__right-item">
-                    <Dropdown
-                        icon='bx bx-bell'
-                        badge=""
-                        contentData={notifications}
-                        renderItems={(item, index) => renderNotificationItem(item, index)}
-                        renderFooter={() => <Link style={{color:"#262e2b"}}>View All</Link>}
-                    />
-                    {/* dropdown here */}
-                </div>
+              
                 <div className="topnav__right-item">
                    
                 </div>

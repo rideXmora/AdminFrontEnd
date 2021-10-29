@@ -19,8 +19,9 @@ import Complain_org from '../pages/org/Complain_org'
 import Driver_org from '../pages/org/Driver_org'
 import DriverRegistration from '../pages/org/DriverRegistration'
 import Accept from '../pages/org/Accept'
-import FareCalculation from '../pages/org/FareCalculation'
+import Fare from '../pages/org/Fare'
 import Profile from '../pages/org/Profile'
+
 
 const OverallRoutes = () => {
     return (
@@ -50,7 +51,7 @@ const OrgRoutes = () => {
                 <Route path='/orgAdmin/dashboard' component={Dashboard_org}/>
                 <Route path='/orgAdmin/complain'  component={Complain_org}/>
                 <Route path='/orgAdmin/driver' exact component={Driver_org}/>
-                <Route path='/orgAdmin/fareCalculation'  component={FareCalculation}/> 
+                <Route path='/orgAdmin/fareCalculation'  component={Fare}/> 
                 <Route path='/orgAdmin/driverRegister' exact  component={DriverRegistration}/>
                 <Route path='/orgAdmin/driverRegister/accept/:id'  component={Accept}/>
                 <Route path='/orgAdmin/driver/profile/:id'  component={Profile}/>

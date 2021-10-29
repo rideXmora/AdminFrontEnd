@@ -6,15 +6,18 @@ import Profile from './Passenger/Profile';
 import Payment from './Passenger/Payment';
 import TripHistory from './Passenger/TripHistory';
 import Complain from './Passenger/Complain';
+import { useAuth } from '../contexts/AuthContext';
+
 function Prathees() {
     const {id, type} = useParams()
+     const {customFetch} = useAuth()
   const [pas, setPas] = useState()
     useEffect(()=>{
-        fetch('http://localhost:8000/passenger/'+id)
-        .then(data => data.json())
+        customFetch('/admin/passenger/all')
         .then(data=> {
-            setPas(data)
-            console.log(data)
+            const filtered = data.find(item=>item.phone===id)
+            setPas(filtered)
+            console.log(filtered)
         })
     }, [])
 
