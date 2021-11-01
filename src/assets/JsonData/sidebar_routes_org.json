@@ -16,6 +16,12 @@
         "icon": "bx bx-user"
     }
     ,
+     {
+        "display_name": "Past rides",
+        "route": "/orgAdmin/pastRides",
+        "icon": "bx bx-car"
+    }
+    ,
     {
        "display_name": "Complains",
         "route": "/orgAdmin/Complain",

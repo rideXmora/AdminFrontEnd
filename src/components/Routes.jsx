@@ -21,6 +21,7 @@ import DriverRegistration from '../pages/org/DriverRegistration'
 import Accept from '../pages/org/Accept'
 import Fare from '../pages/org/Fare'
 import Profile from '../pages/org/Profile'
+import Past from '../pages/org/Past'
 
 
 const OverallRoutes = () => {
@@ -51,6 +52,7 @@ const OrgRoutes = () => {
                 <Route path='/orgAdmin/dashboard' component={Dashboard_org}/>
                 <Route path='/orgAdmin/complain'  component={Complain_org}/>
                 <Route path='/orgAdmin/driver' exact component={Driver_org}/>
+                 <Route path='/orgAdmin/pastRides'  component={Past}/>
                 <Route path='/orgAdmin/fareCalculation'  component={Fare}/> 
                 <Route path='/orgAdmin/driverRegister' exact  component={DriverRegistration}/>
                 <Route path='/orgAdmin/driverRegister/accept/:id'  component={Accept}/>

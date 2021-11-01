@@ -86,8 +86,8 @@ const FareCalculation =  () => {
         }
     }
         return (
-            <>
-            <h2 style={{marginTop:auto , padding:auto}}>Fare Calculation</h2>
+            <div className="fare">
+            <h2 className="cen" style={{marginTop:auto , padding:auto}}>Fare Calculation Procedure</h2>
             <br></br>
             <Form  className="container1" onSubmit={handleSubmit}>
               <div className="vehicle1">
@@ -157,7 +157,7 @@ const FareCalculation =  () => {
 
              <Button type="submit" style={{backgroundColor:"#5c8d89"}}><b>Register</b></Button>
             </Form>
-            </>
+            </div>
         );
 }
 

@@ -1,26 +1,33 @@
 import {useState, useEffect} from 'react'
-import { useParams } from 'react-router';
+import { useParams , useHistory } from 'react-router';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Profile = () => {
     const {id} = useParams()
     const [org, setOrg] = useState()
+    const {customFetch} = useAuth()
+    const history = useHistory()
     useEffect(()=>{
-        fetch('http://localhost:8000/organizations/'+id)
-        .then(data => data.json())
-        .then(data=> {
-            setOrg(data)
-            console.log(data)
+        customFetch('/admin/orgAdmin/all')
+         .then(data=> {
+            const filtered = data.find(item=>item.id===id)
+            setOrg(filtered)
         })
     }, [])
 
     const handleDelete = () => {
-        fetch('http://localhost:8000/organizations/'+id, {
-            method: 'DELETE'
+        fetch('/admin/orgAdmin/suspend', {
+            method: 'POST',
+            headers: {
+                    'Content-Type': 'application/json',
+                },
+            body: JSON.stringify({
+                phone: id,
+                suspend: true
+            })
         })
-        .then(data => data.json())
-        .then(data=> {
-            setOrg(data)
-            console.log(data)
+       .then(data=> {
+            history.push('/admin/organization')
         })
     }
     return (
@@ -32,19 +39,29 @@ const Profile = () => {
                     <td>{org?.name}</td>
                 </tr>
                 <tr>
+                    <td> Contact Number</td>
+                    <td>{org?.phone}</td>
+                </tr>
+                 <tr>
+                    <td> Email</td>
+                    <td>{org?.email}</td>
+                </tr>
+                 <tr>
+                    <td> Business Reg No</td>
+                    <td>{org?.businessRegNo}</td>
+                </tr>
+                 <tr>
+                    <td> Based City</td>
+                    <td>{org?.basedCity}</td>
+                </tr>
+                 <tr>
                     <td> Address</td>
                     <td>{org?.address}</td>
                 </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>{org?.email}</td>
-                </tr>
-                <tr>
-                    <td> Contact numer</td>
-                    <td>{org?.contact_number}</td>
-                </tr>
+              
             </table>
             <button type='button' className='btn-btn-warning' onClick={handleDelete}>Suspend</button>
+            
         </>
     )
 }

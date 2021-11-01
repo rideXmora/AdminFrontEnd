@@ -6,6 +6,7 @@ import Profile from './organizations/Profile'
 import Driver from './organizations/Driver'
 import Income from './organizations/Income'
 
+
 function Yogo() {
     const {type, id} = useParams()
   

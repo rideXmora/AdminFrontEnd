@@ -3,18 +3,21 @@ import React, {useState, useEffect} from 'react'
 import { Table } from 'reactstrap'
 
 import  {Link, useParams}  from 'react-router-dom';
-
+import { useAuth } from '../../contexts/AuthContext';
 
 
 function Driver ()  {
     const {id} = useParams()
     const [driver, setDriver] = useState([])
+    const {customFetch} = useAuth()
     useEffect(()=>{
-        fetch('http://localhost:8000/driver/org/'+id)
-        .then(data => data.json())
+        customFetch('/admin/driver/all')
         .then(data=> {
             setDriver(data)
             console.log(data)
+       /*  .then(data=> {
+            const filtered = data.find(item=>item.driverOrganization.id===id)
+            setDriver(filtered) */
         })
     }, [])
     return (
@@ -30,6 +33,7 @@ function Driver ()  {
                     <tr>
                     <th>Name</th>
                     <th>Contact Number</th>
+                      <th>Email</th>
             
                     <th></th>
                 </tr>
@@ -38,10 +42,11 @@ function Driver ()  {
                     {driver.map((item, id) => (
                         <tr key={id}>
                             <td>{item.name}</td>
-                            <td>{item.contact_number}</td>
+                            <td>{item.phone}</td>
+                            <td>{item.email}</td>
                             
                             <td>
-                                <Link style={{color:"#262e2b"}} to={'/admin/driver/profile/'+ item.email}>View more</Link>
+                                <Link style={{color:"#262e2b"}} to={'/admin/driver/profile/'+ item.phone}>View more</Link>
                             </td>
                             
                         </tr>

@@ -3,17 +3,16 @@ import React, {useState, useEffect} from 'react'
 import { Table } from 'reactstrap'
 
 import  {Link}  from 'react-router-dom';
-
+import { useAuth } from '../contexts/AuthContext';
 import "./Organization.css";
 //import { Link } from 'react-router-dom'
 
 
 function Organization ()  {
     const [organizations, setOrgniztions] = useState([])
+     const {customFetch} = useAuth()
     useEffect(()=>{
-        fetch('http://localhost:8000/organizations')
-
-        .then(data => data.json())
+        customFetch('/admin/orgAdmin/all')
         .then(data=> {
             setOrgniztions(data)
             console.log(data)
@@ -28,21 +27,24 @@ function Organization ()  {
             <Table id="customers">
                 <thead>
                     <tr>
+
                     <th>Name</th>
                     <th>Contact Number</th>
                     <th>Email</th>
+                  
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                     {organizations.map((item, id) => (
                         <tr key={id}>
+                            
                             <td>{item.name}</td>
-                            <td>{item.contact_number}</td>
-                            <td>{item.email}</td>
+                               <td>{item.phone}</td>
+                                  <td>{item.email}</td>
                            
                             <td>
-                               { <Link style={{color:"#262e2b"}} to={'/admin/organization/profile/'+item.email}>   View more</Link>}
+                               { <Link style={{color:"#262e2b"}} to={'/admin/organization/profile/'+item.id}>   View more</Link>}
                             </td>
                             
                         </tr>
