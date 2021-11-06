@@ -1,31 +1,35 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
+
+import { ButtonGroupProps } from 'reactstrap';
 import Profile from './Passenger/Profile';
 import Payment from './Passenger/Payment';
 import TripHistory from './Passenger/TripHistory';
 import Complain from './Passenger/Complain';
 import { useAuth } from '../contexts/AuthContext';
 
-function Prathees() {
+function Driver_Specific() {
     const {id, type} = useParams()
-    const {customFetch} = useAuth()
-    const [pas, setPas] = useState()
+     const {customFetch} = useAuth()
+  const [dri, setDri] = useState()
     useEffect(()=>{
-        customFetch('/admin/passenger/all')
+        customFetch('/admin/driver/all')
         .then(data=> {
             const filtered = data.find(item=>item.phone===id)
-            setPas(filtered)
+            setDri(filtered)
             console.log(filtered)
         })
     }, [])
+
+   
     return (
         <>
         <div>
         <ul>
-                            <li style={{width:"25%"}}><Link class="active" to={'/admin/passenger/profile/'+id }>Profile</Link></li>
-                            <li style={{width:"25%"}}><Link  to={'/admin/passenger/payment/'+id }>Payment</Link></li>
-                            <li style={{width:"25%"}}><Link to={'/admin/passenger/tripHistory/'+id}>Trip History</Link></li>
-                             <li style={{width:"25%"}}><Link to={'/admin/passenger/complain/'+id}>Complains</Link></li>
+                            <li style={{width:"25%"}}><Link class="active" to={'/admin/driver/profile/'+id }>Profile</Link></li>
+                            <li style={{width:"25%"}}><Link  to={'/admin/driver/payment/'+id }>Payment</Link></li>
+                            <li style={{width:"25%"}}><Link to={'/admin/driver/tripHistory/'+id}>Trip History</Link></li>
+                             <li style={{width:"25%"}}><Link to={'/admin/driver/complain/'+id}>Complains</Link></li>
   </ul>
     </div>
          {
@@ -41,5 +45,5 @@ function Prathees() {
     )
 }
 
-export default Prathees
+export default Driver_Specific
  

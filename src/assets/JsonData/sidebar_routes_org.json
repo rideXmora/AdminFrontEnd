@@ -31,5 +31,10 @@
        "display_name": "Fare calculation",
         "route": "/orgAdmin/fareCalculation",
         "icon": "bx bx-cart"
+    },
+     {
+       "display_name": "Profile",
+        "route": "/orgAdmin/profile",
+        "icon": "bx bx-bar-chart-alt"
     }
 ]

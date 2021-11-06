@@ -2,6 +2,15 @@
   background-color: #5c8d89;
   border-radius: 4px;
 }
-li:active{
+li:active {
   color: black;
+}
+h2 {
+  font-size: 2em;
+  padding: 5px;
+  color: #000;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  padding-left: 30px;
 }

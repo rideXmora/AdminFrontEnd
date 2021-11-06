@@ -23,7 +23,10 @@ function Profile () {
                     <td> Driver Name</td>
                     <td>{dri?.name}</td>
                 </tr>
-               
+               <tr>
+                    <td> Registered Organization</td>
+                    <td>{dri?.driverOrganization.name}</td>
+                </tr>
                 <tr>
                     <td>Email</td>
                     <td>{dri?.email}</td>

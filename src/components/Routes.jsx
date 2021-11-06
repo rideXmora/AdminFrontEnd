@@ -22,7 +22,9 @@ import Accept from '../pages/org/Accept'
 import Fare from '../pages/org/Fare'
 import Profile from '../pages/org/Profile'
 import Past from '../pages/org/Past'
-
+import Driver from '../pages/Driver'
+import Driver_Specific from '../pages/Driver_Specific'
+import OrgProfile from '../pages/org/OrgProfile'
 
 const OverallRoutes = () => {
     return (
@@ -38,6 +40,8 @@ const OverallRoutes = () => {
              
              <Route path='/admin/organization/:type/:id' component={Yogo}/>
               <Route path='/admin/passenger/:type/:id' component={Prathees}/>
+               <Route path='/admin/driver' exact component={Driver}/>
+               <Route path='/admin/passenger/:type/:id' component={Driver_Specific}/>
                <Route path='/admin/complain' component={Complain}/>
               
                 <Route path='/admin/driver/:type/:id' component={DriverProfile}/>
@@ -57,6 +61,7 @@ const OrgRoutes = () => {
                 <Route path='/orgAdmin/driverRegister' exact  component={DriverRegistration}/>
                 <Route path='/orgAdmin/driverRegister/accept/:id'  component={Accept}/>
                 <Route path='/orgAdmin/driver/profile/:id'  component={Profile}/>
+                <Route path='/orgAdmin/profile' exact component={OrgProfile}/>
         </Switch>
     )
 }

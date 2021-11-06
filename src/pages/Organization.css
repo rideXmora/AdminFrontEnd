@@ -9,7 +9,7 @@ ul {
 li {
   float: left;
   border-right: 1px solid #262e2b;
-  width: 33.33%;
+  width: 50%;
 }
 
 li:last-child {

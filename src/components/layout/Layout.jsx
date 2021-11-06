@@ -37,17 +37,11 @@ const RouteHanlder = () => {
 
 const Layout = () => {
     
-    const themeReducer = useSelector(state => state.ThemeReducer)
+   
     const dispatch = useDispatch()
 
     useEffect(() => {
-       // const themeClass = localStorage.getItem('themeMode', 'theme-mode-light')
-
-       // const colorClass = localStorage.getItem('colorMode', 'theme-mode-light')
-
-      // dispatch(ThemeAction.setMode(themeClass))
-
-       // dispatch(ThemeAction.setColor(colorClass))
+      
     }, [dispatch])
 
     return (

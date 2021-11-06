@@ -1,8 +1,7 @@
- 
 import React, { useState, useEffect } from 'react'
 import { useParams , useHistory} from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import  Button  from 'reactstrap';
+
 function Profile () {
     const {id} = useParams()
      const {customFetch} = useAuth()
@@ -60,7 +59,7 @@ function Profile () {
                 </tr>
                 <tr>
                     <td> Enable </td>
-                    <td>{pas?.enabled}</td>
+                    <td>{pas?.suspend}</td>
                 </tr>
             </table>
                 <button type='button' style={{backgroundColor:"#5c8d89"}} className='btn-btn-warning' onClick={handleSuspend}>Suspend</button>

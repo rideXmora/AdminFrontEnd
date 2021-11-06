@@ -64,7 +64,7 @@ const AdminRegister =  () => {
     }
         return (
             <>
-            <h2 style={{marginTop:auto , padding:auto}}>Register Organizations</h2>
+            <h2 style={{marginTop:auto , padding:auto}}>Register Admin</h2>
             <br></br>
             <Form className="container" onSubmit={handleSubmit}>
               

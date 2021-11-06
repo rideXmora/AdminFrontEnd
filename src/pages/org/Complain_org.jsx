@@ -1,9 +1,5 @@
 import React, {useState, useEffect} from 'react'
-//import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
-
-import  {Link}  from 'react-router-dom';
-
 function Complain_org ()  {
     const [complain, setComplain] = useState([])
     useEffect(()=>{

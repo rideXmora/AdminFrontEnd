@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react'
-//import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
-
 import  {Link}  from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import "./Organization.css";
-//import { Link } from 'react-router-dom'
 
 
 function Organization ()  {
@@ -40,8 +37,8 @@ function Organization ()  {
                         <tr key={id}>
                             
                             <td>{item.name}</td>
-                               <td>{item.phone}</td>
-                                  <td>{item.email}</td>
+                            <td>{item.phone}</td>
+                            <td>{item.email}</td>
                            
                             <td>
                                { <Link style={{color:"#262e2b"}} to={'/admin/organization/profile/'+item.id}>   View more</Link>}

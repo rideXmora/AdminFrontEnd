@@ -4,40 +4,36 @@ import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap'
 import { useAuth } from '../contexts/AuthContext';
 
-function Passenger ()  {
-    const [pas, setPas] = useState([])
+function Driver ()  {
+    const [dri, setDri] = useState([])
     const {customFetch} = useAuth()
-     const {user} = useAuth()
     useEffect(()=>{
-        customFetch('/admin/passenger/all')
+        customFetch('/admin/driver/all')
         .then(data=> {
-            setPas(data)
+            setDri(data)
             console.log(data)
-            
         })
     }, [])
     return (
         <div>
-            <h2>Passengers List</h2>
+            <h2>Drivers List</h2>
             <Table id="customers">
                 <thead>
                     <tr>
                     <th>Name</th>
                     <th>Contact Number</th>
-                    <th> Active</th>
                   
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                    {pas.map((item, id) => (
+                    {dri.map((item, id) => (
                         <tr key={id}>
                             <td>{item.name}</td>
                             <td>{item.phone}</td>
-                            <td>{item.suspend}</td>
                            
                             <td>
-                                <Link style={{color:"#262e2b"}} to={'/admin/passenger/profile/'+item.phone}> View more</Link>
+                                <Link style={{color:"#262e2b"}} to={'/admin/driver/profile/'+item.phone}> View more</Link>
                             </td>
                             
                         </tr>
@@ -51,4 +47,4 @@ function Passenger ()  {
 
 
 
-export default Passenger
+export default Driver

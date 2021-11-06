@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Label, FormGroup, FormFeedback, Button } from 'reactstrap';
 import { isEmail } from 'validator';
 import "./Register.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { auto } from 'async';
 import { useAuth } from '../contexts/AuthContext';
 
 const initialData = {

@@ -33,22 +33,6 @@ const chartOptions = {
     }
 }
  
-const renderCusomerHead = (item, index) => (
-    <th key={index}>{item}</th>
-)
-
-const renderCusomerBody = (item, index) => (
-    <tr key={index}>
-        <td>{item.username}</td>
-       
-    </tr>
-)
-
-
-
-
-
-
 const Dashboard = () => {
 
     const themeReducer = useSelector(state => state.ThemeReducer.mode)
