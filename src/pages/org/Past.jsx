@@ -34,9 +34,9 @@ function Past ()  {
                 <tbody>
                     {past.map((item, id) => (
                         <tr key={id}>
-                            <td>{item.passenger.name}</td>
-                            <td>{item.driver.name}</td>
-                            <td>{item.vehicle.number}</td>
+                            <td>{item.rideRequest.passenger.name}</td>
+                            <td>{item.rideRequest.driver.name}</td>
+                            <td>{item.rideRequest.driver.vehicle.number}</td>
                             <td>{item.driverFeedback}</td>
                              <td>{item.passengerFeedback}</td>
                             <td>{item.driverRating}</td>

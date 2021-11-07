@@ -15,7 +15,7 @@ const Profile = () => {
         })
     }, [])
 
-    const handleDelete = () => {
+    const handleSuspend = () => {
         fetch('/admin/orgAdmin/suspend', {
             method: 'POST',
             headers: {
@@ -60,7 +60,7 @@ const Profile = () => {
                 </tr>
               
             </table>
-            <button type='button' className='btn-btn-warning' onClick={handleDelete}>Suspend</button>
+            <button type='button' className='btn-btn-warning' onClick={handleSuspend}>Suspend</button>
             
         </>
     )

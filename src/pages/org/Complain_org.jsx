@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { Table } from 'reactstrap'
+import {useAuth} from '../../contexts/AuthContext'
 function Complain_org ()  {
     const [complain, setComplain] = useState([])
+     const {customFetch} = useAuth()
     useEffect(()=>{
-        fetch('http://localhost:8000/complain_org')
-        .then(data => data.json())
+        customFetch('/orgAdmin/ride/complains')
         .then(data=> {
             setComplain(data)
             console.log(data)
@@ -19,16 +20,20 @@ function Complain_org ()  {
             <Table id="customers">
                 <thead>
                     <tr>
-                    <th>Name</th>
-                    <th>Message</th>
+                    <th>Driver Name</th>
+                    <th>Passenger Name</th>
+                    <th>Driver Complain</th>
+                    <th>Passenger Complain</th>
                     
                 </tr>
                 </thead>
                 <tbody>
                     {complain.map((item, id) => (
                         <tr key={id}>
-                            <td>{item.name}</td>
-                            <td>{item.message}</td>
+                            <td>{item.ride.driver.name}</td>
+                            <td>{item.ride.passenger.name}</td>
+                            <td>{item.passengerComplain}</td>
+                            <td>{item.driverComplain}</td>
                           
                         </tr>
                     ))}
