@@ -9,7 +9,7 @@ function OrgProfile () {
   const [changePsw, setChangePsw] = useState(false)
   const {customFetch} = useAuth()
 
-  const [data, setData] = useState({oldPassword: '', newPassword: ''})
+  const [data, setData] = useState({oldPassword: '', newPassword: '', confirmPassword: ''})
     const [errors, setErrors] = useState({})
 
     useEffect(()=>{
@@ -42,6 +42,7 @@ function OrgProfile () {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (data.newPassword!==data.confirmPassword) return alert('Password and Confirm password mismatch !')
         validate();
         if (Object.keys(errors).length === 0) {
             console.log(data);
@@ -121,6 +122,12 @@ function OrgProfile () {
                     <Label for="newPassword">New Password</Label>
                     <Input id="newPassword" type="password" value={data.newPassword} name="newPassword" invalid={errors.newPassword ? true : false} onChange={handleChange} />
                     <FormFeedback>{errors.newPassword}</FormFeedback>
+                </FormGroup>
+              
+                <FormGroup className="form">
+                    <Label for="confirmPassword">New Password</Label>
+                    <Input id="confirmPassword" type="password" value={data.confirmPassword} name="confirmPassword" invalid={errors.confirmPassword ? true : false} onChange={handleChange} />
+                    <FormFeedback>{errors.confirmPassword}</FormFeedback>
                 </FormGroup>
 
                 <Button type="submit" style={{backgroundColor:"#5c8d89"}}><b>Register</b></Button>
