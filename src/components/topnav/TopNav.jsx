@@ -32,9 +32,9 @@ const renderUserToggle = (user) => (
     </div>
 )
 
-const renderUserMenu =(item, index) => (
-    
-    <Link style={{color:"#262e2b"}} key={index}>
+const renderUserMenu = (item, index) => (
+
+    <Link style={{ color: "#262e2b" }} key={index} onClick={item.onClick}>
         <div className="notification-item">
             <i className={item.icon}></i>
             <span>{item.content}</span>
@@ -43,23 +43,27 @@ const renderUserMenu =(item, index) => (
 )
 
 const Topnav = () => {
-    const {user} = useAuth()
-    curr_user.display_name = user.role==='RIDEX_ADMIN'? 'Overall Admin' : 'Organization Admin'
+    const { user, logout } = useAuth()
+    curr_user.display_name = user.role === 'RIDEX_ADMIN' ? 'Overall Admin' : 'Organization Admin'
     return (
         <div className='topnav'>
-            
+
             <div className="topnav__right">
                 <div className="topnav__right-item">
                     {/* dropdown here */}
                     <Dropdown
                         customToggle={() => renderUserToggle(curr_user)}
-                        contentData={user_menu}
+                        contentData={[{
+                            "icon": "bx bx-log-out-circle bx-rotate-180",
+                            "content": "Logout",
+                            onClick: logout
+                        }]}
                         renderItems={(item, index) => renderUserMenu(item, index)}
                     />
                 </div>
-              
+
                 <div className="topnav__right-item">
-                   
+
                 </div>
             </div>
         </div>

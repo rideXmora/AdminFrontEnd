@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import Profile from './Passenger/Profile';
 import Payment from './Passenger/Payment';
 import TripHistory from './Passenger/TripHistory';
-import Complain from './Passenger/Complain';
 import { useAuth } from '../contexts/AuthContext';
 
 function Prathees() {
@@ -22,10 +21,10 @@ function Prathees() {
         <>
         <div>
         <ul>
-                            <li style={{width:"25%"}}><Link class="active" to={'/admin/passenger/profile/'+id }>Profile</Link></li>
-                            <li style={{width:"25%"}}><Link  to={'/admin/passenger/payment/'+id }>Payment</Link></li>
-                            <li style={{width:"25%"}}><Link to={'/admin/passenger/tripHistory/'+id}>Trip History</Link></li>
-                             <li style={{width:"25%"}}><Link to={'/admin/passenger/complain/'+id}>Complains</Link></li>
+                            <li className={type === "profile" ? "active" : ""} style={{width:"33.33%"}}><Link class="active" to={'/admin/passenger/profile/'+id }>Profile</Link></li>
+                            <li className={type === "payment" ? "active" : ""} style={{width:"33.33%"}}><Link  to={'/admin/passenger/payment/'+id }>Payment</Link></li>
+                           { <li className={type === "tripHistory" ? "active" : ""} style={{width:"33.33%"}}><Link to={'/admin/passenger/tripHistory/'+id}>Trip History</Link></li>}
+                            
   </ul>
     </div>
          {
@@ -33,9 +32,8 @@ function Prathees() {
                 ? <Profile />
                : (type === 'payment')
                ? <Payment />
-               : (type === 'tripHistory')
-               ? <TripHistory />
-               : <Complain />
+               : <TripHistory />
+               
             }
             </>
     )

@@ -29,10 +29,5 @@
         "display_name": "Drivers",
         "route": "/admin/driver",
         "icon": "bx bx-car"
-    },
-    {
-       "display_name": "Complains",
-        "route": "/admin/Complain",
-        "icon": "bx bx-error"
     }
 ]

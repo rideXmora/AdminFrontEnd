@@ -28,7 +28,7 @@ function Driver_org ()  {
                 </tr>
                 </thead>
                 <tbody>
-                    {driver.map((item, id) => (
+                   {driver.filter(item => !item.suspend).map((item, id) => (
                         <tr key={id}>
                             <td>{item.name}</td>
                             <td>{item.phone}</td>

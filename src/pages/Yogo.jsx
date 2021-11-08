@@ -1,36 +1,68 @@
-import React from 'react'
-import { useParams, Link } from 'react-router-dom';
-import "./Yogo.css";
+import { useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router';
+import { useAuth } from '../contexts/AuthContext';
+import { Button } from 'reactstrap';
+const Yogo = () => {
+    const { id } = useParams()
+    const [org, setOrg] = useState()
+    const { customFetch } = useAuth()
+    const history = useHistory()
+    useEffect(() => {
+        customFetch('/admin/orgAdmin/all')
+            .then(data => {
+                const filtered = data.find(item => item.phone === id)
+                setOrg(filtered)
+            })
+    }, [])
 
-import Profile from './organizations/Profile'
-
-import Income from './organizations/Income'
-
-
-function Yogo() {
-    const {type, id} = useParams()
-  
-
-    
+    const handleSuspend = () => {
+        customFetch('/admin/orgAdmin/suspend', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phone: id,
+                suspend: true
+            })
+        })
+            .then(data => {
+                history.push('/admin/organization')
+            })
+    }
     return (
-        <div>
-            <div>
-                <ul >
-                    <li><Link  to={'/admin/organization/profile/'+ id }>Profile</Link></li>
-                    <li><Link  to={'/admin/organization/income/'+id }>Income</Link></li>
-                    
-                    
-                </ul>
-            </div>
-            {
-                ( type==='profile' )
-                ? <Profile />
-                : 
-                <Income/>
-                
-            }
-            
-        </div>
+        <>
+            <h2>Profile</h2>
+            <table>
+                <tr>
+                    <td> Organization Name</td>
+                    <td>{org?.name}</td>
+                </tr>
+                <tr>
+                    <td> Contact Number</td>
+                    <td>{org?.phone}</td>
+                </tr>
+                <tr>
+                    <td> Email</td>
+                    <td>{org?.email}</td>
+                </tr>
+                <tr>
+                    <td> Business Reg No</td>
+                    <td>{org?.businessRegNo}</td>
+                </tr>
+                <tr>
+                    <td> Based City</td>
+                    <td>{org?.basedCity}</td>
+                </tr>
+                <tr>
+                    <td> Address</td>
+                    <td>{org?.address}</td>
+                </tr>
+
+            </table>
+            {/* <button type='button' className='btn-btn-warning' onClick={handleSuspend}>Suspend</button> */}
+         <Button type='button' className='btn-btn-warning' onClick={handleSuspend} >Suspend</Button>
+        </>
     )
 }
 

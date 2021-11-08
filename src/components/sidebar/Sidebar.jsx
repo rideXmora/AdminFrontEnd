@@ -27,9 +27,9 @@ const SidebarItem = props => {
 }
 
 const Sidebar = props => {
-    const activeItem = [...sidebar_items, ...sidebar_org_items].findIndex(item => item.route === props.location.pathname)
-    const {user} = useAuth()
-    const currentMenus = user.role==='RIDEX_ADMIN'?sidebar_items:sidebar_org_items
+    const { user } = useAuth()
+    const currentMenus = user.role === 'RIDEX_ADMIN' ? sidebar_items : sidebar_org_items
+    const activeItem = currentMenus.findIndex(item => item.route === props.location.pathname)
 
     return (
         <div className='sidebar'>
@@ -38,7 +38,7 @@ const Sidebar = props => {
             </div>
             {
                 currentMenus.map((item, index) => (
-                    <Link style={{color:"#262e2b", textDecoration:"none"}} to={item.route} key={index}>
+                    <Link style={{ color: "#262e2b", textDecoration: "none" }} to={item.route} key={index}>
                         <SidebarItem
                             title={item.display_name}
                             icon={item.icon}

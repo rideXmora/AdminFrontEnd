@@ -1,13 +1,16 @@
-import React from 'react'
+
 import Chart from 'react-apexcharts'
 import { useSelector } from 'react-redux'
 import StatusCard_org from '../../components/status-card/StatusCard_org'
 import statusCards_org from '../../assets/JsonData/status-card-data_org.json'
 import Table from '../../components/table/Table'
+import { useAuth } from '../../contexts/AuthContext'
+import React, {useState, useEffect} from 'react'
+
 const chartOptions = {
     series: [{
-        name: 'Active Drivers',
-        data: [4,10,20,40,36,90,130]
+        name: 'Number of rides',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
     ],
     options: {
@@ -22,7 +25,7 @@ const chartOptions = {
             curve: 'smooth'
         },
         xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         },
         legend: {
             position: 'top'
@@ -52,6 +55,42 @@ const renderCusomerBody = (item, index) => (
 const Dashboard = () => {
 
     const themeReducer = useSelector(state => state.ThemeReducer.mode)
+    const { customFetch } = useAuth()
+    const [driver, setDriver] = useState([])
+    const [org, setOrg] = useState()
+    const [waiting, setWaiting] = useState(true)
+    
+    useEffect(() => {
+        customFetch('/orgAdmin/driver/top')
+            .then(data => {
+                setDriver(data)
+                console.log(data)
+            })
+        
+        customFetch('/orgAdmin/profile')
+        .then((data)=> {
+            setOrg(data)
+
+        })
+
+        customFetch('/orgAdmin/driver/adminRidesStats')
+        .then((data)=> {
+            Object.keys(data).forEach(month=>{
+                const monthData = data[month]
+                switch(month) {
+                    case 'JANUARY':
+                        // code block
+                        break;
+                    case 'NOVEMBER':
+                        chartOptions.series[0].data[10]=monthData.count
+                        setWaiting(false)
+                        break;
+                    default:
+                        // code block
+                }
+            })
+        })
+    }, [])
 
     return (
         <div>
@@ -61,10 +100,10 @@ const Dashboard = () => {
                     <div className="row">
                         {
                             statusCards_org.map((item, index) => (
-                                <div className="col-6" key={index}>
+                                <div className="col-9" key={index}>
                                     <StatusCard_org
                                         icon={item.icon}
-                                        count={item.count}
+                                        count={org?.totalIncome.toFixed(0) + " Rs"}
                                         title={item.title}
                                     />
                                 
@@ -76,6 +115,7 @@ const Dashboard = () => {
                 <div className="col-6">
                     <div className="card full-height">
                         {/* chart */}
+                        {!waiting &&
                         <Chart
                             options={themeReducer === 'theme-mode-dark' ? {
                                 ...chartOptions.options,
@@ -88,42 +128,37 @@ const Dashboard = () => {
                             type='line'
                             height='100%'
                         />
+                        }
                     </div>
                 </div>
-               <div>
-                   <div>
-        <h2>Top Drivers</h2>
-            <table id="customers">
-  <tr>
-    <th>Name</th>
-    <th>Contact Number</th>
-    
-  </tr>
-  <tr>
-    <td>Mathu</td>
-    <td>0752250313</td>
-   </tr>
- 
-  <tr>
-    <td>Divus</td>
-    <td>0778311328</td>
-    
-   
-  </tr>
-  <tr>
-    <td>Sheron</td>
-    <td>0762251247</td>
-   
-  </tr>
- 
- 
-  
-</table>
-        </div>
-               </div>
-                
+            <div>
+            <h2>Top Drivers List</h2>
+            <div className="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Contact Number</th>
+                  
+                   
+                </tr>
+                </thead>
+                <tbody>
+                     {driver.map((item, id) => (
+                        <tr key={id}>
+                            <td>{item.id?.name}</td>
+                            <td>{item.id?.phone}</td>
+                           
+                        </tr>
+                    ))}
+                </tbody>
+                </table>
             </div>
         </div>
+        </div>
+        </div>
+                   
+       
     )
 }
 

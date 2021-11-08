@@ -1,49 +1,64 @@
+import { useParams } from 'react-router';
 import React, {useState, useEffect} from 'react'
 import { Table } from 'reactstrap'
+import {useAuth} from '../../contexts/AuthContext'
 
-function TripHistory ()  {
-    const [his, setHis] = useState([])
+function Past ()  {
+    const [past, setPast] = useState([])
+    const {customFetch} = useAuth()
+     const { id } = useParams()
     useEffect(()=>{
-        fetch('http://localhost:8000/passenger_tripHistory')
-        .then(data => data.json())
-        .then(data=> {
-            setHis(data)
-            console.log(data)
+        customFetch('/admin/passenger/pastRides', {
+            method: 'POST',
+            headers: {
+                    'Content-Type': 'application/json',
+                },
+            body: JSON.stringify({
+                phone: id,
+            })
         })
+        
+        .then(data => {
+                /* const modified = data.filter(item => item.rideRequest.passenger.phone == id) */
+                setPast(data)
+            })
     }, [])
     return (
-    <div>
-    <div>
-    </div>
         <div>
-            <h2>Trip history</h2>
+            <h2>Past rides List</h2>
             <Table id="customers">
                 <thead>
                     <tr>
-                    <th>Pickup</th>
-                    <th>Destination</th>
-                    <th>Distance</th>
+                    <th>Passenger name</th>
+                    <th>Driver name</th>
+                    <th>Vehicle No</th>
+                    <th>Driver feedback</th>
+                    <th>Passenger feedback</th>
+                    <th>Driver rating</th>
+                    <th>Passenger rating</th>
                     <th>Payment</th>
-                    
                 </tr>
                 </thead>
                 <tbody>
-                    {his.map((item, id) => (
+                    {past.map((item, id) => (
                         <tr key={id}>
-                            <td>{item.pickup}</td>
-                            <td>{item.destination}</td>
-                             <td>{item.distance}</td>
-                            <td>{item.payment}</td>
-                          
+                            <td>{item.rideRequest.passenger.name}</td>
+                            <td>{item.rideRequest.driver.name}</td>
+                            <td>{item.rideRequest.driver.vehicle.number}</td>
+                            <td>{item.driverFeedback}</td>
+                             <td>{item.passengerFeedback}</td>
+                            <td>{item.driverRating}</td>
+                            <td>{item.passengerRating}</td>
+                            <td>{item.payment.toFixed(0)}Rs</td>    
                         </tr>
                     ))}
                 </tbody>
                 
             </Table>
         </div>
-        </div>
     )
-
 }
 
-export default TripHistory 
+
+
+export default Past

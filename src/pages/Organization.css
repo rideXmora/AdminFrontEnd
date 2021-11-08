@@ -3,7 +3,9 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #a7d7c5;
+  /* background-color: #a7d7c5; */
+  background-color: #a7d7c5 !important;
+  color: black !important;
 }
 
 li {
@@ -18,10 +20,11 @@ li:last-child {
 
 li a {
   display: block;
-  color: white;
+  /* color: white; */
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  color: black !important;
 }
 
 li :hover {
@@ -39,5 +42,5 @@ li :active {
   background-color: black;
 }
 li.active {
-  background-color: black;
+  background-color: #74b49b !important;
 }

@@ -1,42 +1,80 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom';
-import Profile from './Driver/Profile';
-import Income from './Driver/Income';
-import TripHistory from './Driver/TripHistory';
-import Complain from './Driver/Complain';
-function DriverProfile() {
-    const {id, type} = useParams()
-  const [dri, setDri] = useState()
-    useEffect(()=>{
-        fetch('http://localhost:8000/driver/'+id)
-        .then(data => data.json())
-        .then(data=> {
-            setDri(data)
-            console.log(data)
-        })
-    }, [])
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
-   
-    return (
-        <>
+function DriverProfile () {
+    const {id} = useParams()
+    const [dri, setDri] = useState()
+    const {customFetch} = useAuth()
+    useEffect(()=>{
+        customFetch('/admin/driver/all')
+        .then(data=> {
+            const filtered = data.find(item=>item.phone===id)
+            setDri(filtered)
+        
+        })
+    },[])
+    return(
+        
         <div>
-        <ul>
-                            <li style={{width:"25%"}}><Link class="active" to={'/admin/driver/profile/'+id }>Profile</Link></li>
-                            <li style={{width:"25%"}}><Link  to={'/admin/driver/income/'+id }>Income</Link></li>
-                            <li style={{width:"25%"}}><Link to={'/admin/driver/tripHistory/'+id}>Trip History</Link></li>
-                             <li style={{width:"25%"}}><Link to={'/admin/driver/complain/'+id}>Complains</Link></li>
-  </ul>
-    </div>
-         {
-                ( type==='profile' )
-                ? <Profile />
-               : (type === 'income')
-               ? <Income />
-               : (type === 'tripHistory')
-               ? <TripHistory />
-               : <Complain />
-            }
-            </>
+            <div><h2>Profile</h2></div>
+            <table>
+                <tr>
+                    <td> Driver Name</td>
+                    <td>{dri?.name}</td>
+                </tr>
+               <tr>
+                    <td> Registered Organization</td>
+                    <td>{dri?.driverOrganization.name}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{dri?.email}</td>
+                </tr>
+                <tr>
+                    <td> Contact numer</td>
+                    <td>{dri?.phone}</td>
+                </tr>
+                  <tr>
+                    <td>City</td>
+                    <td>{dri?.city}</td>
+                </tr>
+                  <tr>
+                    <td>driving license</td>
+                    <td>{dri?.drivingLicense}</td>
+                </tr>
+                  <tr>
+                    <td>Total income</td>
+                    <td>{dri?.totalIncome}</td>
+                </tr>
+                  <tr>
+                    <td>Total Ratings </td>
+                    <td>{dri?.totalRatings}</td>
+                </tr>
+                  <tr>
+                    <td>Total Rides</td>
+                    <td>{dri?.totalRides}</td>
+                </tr>
+                  <tr>
+                    <td>Vehicle number</td>
+                    <td>{dri?.vehicle.number}</td>
+                </tr>
+                  <tr>
+                    <td>Vehicle type</td>
+                    <td>{dri?.vehicle.type}</td>
+                </tr>
+                  <tr>
+                    <td>Vehicle Model</td>
+                    <td>{dri?.vehicle.model}</td>
+                </tr>
+                  <tr>
+                    <td>Vehicle RegNo</td>
+                    <td>{dri?.vehicle.RegNo}</td>
+                </tr>
+            </table>
+              
+            
+        </div>
     )
 }
 

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom';
 import {useAuth} from '../../contexts/AuthContext'
+import { Button } from 'reactstrap';
 
 function Accept () {
     const history = useHistory()
@@ -76,39 +77,40 @@ function Accept () {
                 </tr>
                 <tr>
                     <td>Vehicle Number</td>
-                    <td>{driv?.vehicle.number}</td>
+                    <td>{driv?.vehicle?.number}</td>
                 </tr>
                 <tr>
                     <td>Driving License</td>
-                    <td>{driv?.drivingLicense}</td>
+        
+                     <td><img src = "{driv?.drivingLicense}"></img> </td> 
                 </tr>
                 <tr>
                     <td> Vehicle Type</td>
-                    <td>{driv?.vehicle.vehicleType}</td>
+                    <td>{driv?.vehicle?.vehicleType}</td>
                 </tr>
                   <tr>
                     <td> Model</td>
-                    <td>{driv?.vehicle.model}</td>
+                    <td>{driv?.vehicle?.model}</td>
                 </tr>
                   <tr>
                     <td> License </td>
-                    <td>{driv?.vehicle.license}</td>
+                    <td>{driv?.vehicle?.license}</td>
                 </tr>
                   <tr>
                     <td> Vehicle Type</td>
-                    <td>{driv?.vehicle.insurance}</td>
+                    <td>{driv?.vehicle?.insurance}</td>
                 </tr>
                   <tr>
                     <td> Vehicle Reg No</td>
-                    <td>{driv?.vehicle.vehicleRegNo}</td>
+                    <td>{driv?.vehicle?.vehicleRegNo}</td>
                 </tr>
                 
 
             </table>
-            <button type='button' className='btn-btn-warning' onClick={handleEnable} >Enable</button>
+            <Button type='button' className='btn-btn-warning' onClick={handleEnable} >Enable</Button>
              <br/>
              <br/>
-            <button type='button' style={{backgroundColor:'#DC143C' , justifyContent: 'center'}} onClick={handleSuspend}>Suspend</button>
+            <Button type='button' style={{backgroundColor:'#DC143C' , justifyContent: 'center'}} onClick={handleSuspend}>Suspend</Button>
             
         </div>
     )

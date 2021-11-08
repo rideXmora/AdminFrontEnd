@@ -41,8 +41,8 @@ function Past ()  {
                              <td>{item.passengerFeedback}</td>
                             <td>{item.driverRating}</td>
                             <td>{item.passengerRating}</td>
-                            <td>{item.distance}</td>
-                            <td>{item.payment}</td>    
+                            <td>{item.rideRequest.distance}m</td>
+                            <td>{item.payment.toFixed(0)}Rs</td>    
                         </tr>
                     ))}
                 </tbody>

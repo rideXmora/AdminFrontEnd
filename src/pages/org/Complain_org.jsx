@@ -7,10 +7,25 @@ function Complain_org ()  {
     useEffect(()=>{
         customFetch('/orgAdmin/ride/complains')
         .then(data=> {
-            setComplain(data)
-            console.log(data)
+           const modified = data.filter(item => item.complainStatus == "RAISED")
+                setComplain(modified)
         })
     }, [])
+    const handleSolve = (id) => {
+        customFetch('/orgAdmin/ride/complain/changeStatus', {
+            method: 'POST',
+            headers: {
+                    'Content-Type': 'application/json',
+                },
+            body: JSON.stringify({
+                id,
+                complainStatus: "SOLVED"
+            })
+        })
+        .then(data=> {
+            setComplain(complains=>complains.filter(com=>com.id!==id))
+        })
+    }
     return (
     <div>
     <div>
@@ -24,16 +39,20 @@ function Complain_org ()  {
                     <th>Passenger Name</th>
                     <th>Driver Complain</th>
                     <th>Passenger Complain</th>
+                     <th></th>
+                   
+                    
                     
                 </tr>
                 </thead>
                 <tbody>
                     {complain.map((item, id) => (
                         <tr key={id}>
-                            <td>{item.ride.driver.name}</td>
-                            <td>{item.ride.passenger.name}</td>
+                            <td>{item.ride.rideRequest.driver.name}</td>
+                            <td>{item.ride.rideRequest.passenger.name}</td>
                             <td>{item.passengerComplain}</td>
                             <td>{item.driverComplain}</td>
+                           <button style = {{backgroundColor:"#74b49b"}}type='button' className='btn-btn-warning' onClick={()=>handleSolve(item.id)}>Solve</button>
                           
                         </tr>
                     ))}

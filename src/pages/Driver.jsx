@@ -27,7 +27,7 @@ function Driver ()  {
                 </tr>
                 </thead>
                 <tbody>
-                    {dri.map((item, id) => (
+                     {dri.filter(item => !item.suspend).map((item, id) => (
                         <tr key={id}>
                             <td>{item.name}</td>
                             <td>{item.phone}</td>
