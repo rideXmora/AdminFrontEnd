@@ -31,14 +31,12 @@ function Complain_org ()  {
     <div>
     </div>
         <div>
-            <h2>Complains about our Organization</h2>
+            <h2>Complains given by the driver </h2>
             <Table id="customers">
                 <thead>
                     <tr>
                     <th>Driver Name</th>
-                    <th>Passenger Name</th>
-                    <th>Driver Complain</th>
-                    <th>Passenger Complain</th>
+                    <th> Complain</th>
                      <th></th>
                    
                     
@@ -49,8 +47,6 @@ function Complain_org ()  {
                     {complain.map((item, id) => (
                         <tr key={id}>
                             <td>{item.ride.rideRequest.driver.name}</td>
-                            <td>{item.ride.rideRequest.passenger.name}</td>
-                            <td>{item.passengerComplain}</td>
                             <td>{item.driverComplain}</td>
                            <button style = {{backgroundColor:"#74b49b"}}type='button' className='btn-btn-warning' onClick={()=>handleSolve(item.id)}>Solve</button>
                           
