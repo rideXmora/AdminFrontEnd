@@ -8,6 +8,7 @@ import { useAuth } from '../contexts/AuthContext';
 const initialData = {
             phone: '',
             password: '',
+            cPassword: ''
         }
 
 const AdminRegister =  () => {
@@ -43,9 +44,11 @@ const AdminRegister =  () => {
 
         const errors = validate();
 
+        if (data.password!==data.cPassword) return alert('Password and Confirm password mismatch!')
+
         if (Object.keys(errors).length === 0) {
             console.log(data);
-            alert('Succesfully registerd admin')
+            
             //Call an api here
             //Resetting the form
             customFetch('/admin/register/admin', {
@@ -57,7 +60,7 @@ const AdminRegister =  () => {
             })
             .then(data=>{
                 console.log(data)
-                
+                alert('Succesfully registerd admin')
                 // setState(getInitialState());
             })
         }
@@ -77,13 +80,15 @@ const AdminRegister =  () => {
               
                 <FormGroup className="form">
                     <Label for="password">Password</Label>
-                    <Input id="password" type="password" value={data.password} type="password" name="password" invalid={errors.password ? true : false} onChange={handleChange} />
+                    <Input id="password" value={data.password} type="password" name="password" invalid={errors.password ? true : false} onChange={handleChange} />
                     <FormFeedback>{errors.password}</FormFeedback>
                 </FormGroup>
-
-            
-
-                
+              
+                <FormGroup className="form">
+                    <Label for="cPassword">Confirm Password</Label>
+                    <Input id="cPassword" value={data.cPassword} type="password" name="cPassword" invalid={errors.cPassword ? true : false} onChange={handleChange} />
+                    <FormFeedback>{errors.cPassword}</FormFeedback>
+                </FormGroup>
 
                 <Button type="submit" style={{backgroundColor:"#5c8d89"}}><b>Register</b></Button>
             </Form>

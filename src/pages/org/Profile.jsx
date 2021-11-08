@@ -56,7 +56,7 @@ function Profile () {
                 </tr>
                   <tr>
                     <td> License </td>
-                    <td>{driv?.vehicle.license}</td>
+                    <td>{driv?.vehicle.license.toLowerCase()}</td>
                 </tr>
                   <tr>
                     <td> Vehicle Type</td>

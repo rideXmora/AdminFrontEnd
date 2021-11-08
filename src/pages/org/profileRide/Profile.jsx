@@ -59,7 +59,9 @@ function Profile() {
                 </tr>
                 <tr>
                     <td>Driving License</td>
-                    <td>{driv?.drivingLicense}</td>
+                    <td>
+                        <img style={{width: 100}} src={driv?.drivingLicense} alt="No img" />
+                    </td>
                 </tr>
                 <tr>
                     <td> Vehicle Type</td>
@@ -71,15 +73,21 @@ function Profile() {
                 </tr>
                 <tr>
                     <td> License </td>
-                    <td>{driv?.vehicle.license}</td>
+                    <td>
+                        <img style={{width: 100}} src={driv?.vehicle?.license} alt="No img" />
+                    </td>
                 </tr>
                 <tr>
                     <td> Vehicle Type</td>
-                    <td>{driv?.vehicle.insurance}</td>
+                    <td>
+                        <img style={{width: 100}} src={driv?.vehicle?.insurance} alt="No img" />
+                    </td>
                 </tr>
                 <tr>
-                    <td> Vehicle Reg No</td>
-                    <td>{driv?.vehicle.vehicleRegNo}</td>
+                    <td> Vehicle Reg</td>
+                    <td>
+                        <img style={{width: 100}} src={driv?.vehicle?.vehicleRegNo} alt="No img" />
+                    </td>
                 </tr>
 
             </table>

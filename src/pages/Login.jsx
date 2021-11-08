@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 import "./Login.css";
@@ -18,7 +19,7 @@ function Login()  {
             if (data.token) {
                 history.push('/admin/dashboard')
             } else {
-                alert('Login failed')
+                alert(data.message)
             }
         }).catch(e=>{
             alert('Login failed')
@@ -48,6 +49,8 @@ function Login()  {
                
               
             </form>
+
+            <Link to={'/orgLogin'}>Login as Organization Admin?</Link>
 </div>
 </div>
 </div>

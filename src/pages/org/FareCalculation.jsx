@@ -80,7 +80,7 @@ const FareCalculation =  () => {
             })
             .then(data=>{
                 console.log(data)
-                
+                history.push('/orgAdmin/dashboard')
                 // setState(getInitialState());
             })
         }

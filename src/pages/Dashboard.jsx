@@ -49,15 +49,12 @@ const renderCusomerBody = (item, index) => (
 
 
 
-
-
-
 const Dashboard = () => {
 
     const themeReducer = useSelector(state => state.ThemeReducer.mode)
     const { customFetch } = useAuth()
     const [driver, setDriver] = useState([])
-    const [org, setOrg] = useState()
+    const [org, setOrg] = useState(0)
     const [waiting, setWaiting] = useState(true)
     
     useEffect(() => {
@@ -67,7 +64,7 @@ const Dashboard = () => {
                 console.log(data)
             })
         
-        customFetch('/orgAdmin/profile')
+        customFetch('/admin/totalIncome')
         .then((data)=> {
             setOrg(data)
 
@@ -103,7 +100,7 @@ const Dashboard = () => {
                                 <div className="col-9" key={index}>
                                     <StatusCard
                                         icon={item.icon}
-                                        /* count={org?.totalIncome.toFixed(0) + " Rs"} */
+                                        count={org.toFixed() + ' Rs'}
                                         title={item.title}
                                     />
                                 

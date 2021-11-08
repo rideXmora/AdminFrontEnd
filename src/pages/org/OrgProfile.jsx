@@ -96,11 +96,11 @@ function OrgProfile () {
                 </tr>
                 <tr>
                     <td>{org?.payments[1].vehicleType} </td>
-                    <td>RatePerMeter:{org?.payments[0].ratePerMeter}, RateWaitingForMin:{org?.payments[0].rateWaitingPerMin} , Discount:{org?.payments[0].discount}</td>
+                    <td>RatePerMeter:{org?.payments[1].ratePerMeter}, RateWaitingForMin:{org?.payments[1].rateWaitingPerMin} , Discount:{org?.payments[1].discount}</td>
                 </tr>
                 <tr>
                     <td>{org?.payments[2].vehicleType} </td>
-                    <td>RatePerMeter:{org?.payments[0].ratePerMeter}, RateWaitingForMin:{org?.payments[0].rateWaitingPerMin} , Discount:{org?.payments[0].discount}</td>
+                    <td>RatePerMeter:{org?.payments[2].ratePerMeter}, RateWaitingForMin:{org?.payments[2].rateWaitingPerMin} , Discount:{org?.payments[2].discount}</td>
                 </tr>
               
             </table>

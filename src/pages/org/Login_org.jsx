@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router'
 import api from '../../services/api'
 import { useAuth } from '../../contexts/AuthContext'
@@ -51,6 +52,8 @@ function Login()  {
                 <button type="submit" className="inputbox">Submit</button>
                
             </form>
+
+            <Link to={'/login'}>Login as Overall Admin?</Link>
 </div>
 </div>
 </div>

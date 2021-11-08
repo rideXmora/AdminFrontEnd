@@ -77,36 +77,43 @@ function Accept () {
                 </tr>
                 <tr>
                     <td>Vehicle Number</td>
-                    <td>{driv?.vehicle?.number}</td>
+                    <td>{driv?.vehicle.number}</td>
                 </tr>
                 <tr>
                     <td>Driving License</td>
-        
-                     <td><img src = "{driv?.drivingLicense}"></img> </td> 
+                    <td>
+                        <img style={{width: 100}} src={driv?.drivingLicense} alt="No img" />
+                    </td>
                 </tr>
                 <tr>
                     <td> Vehicle Type</td>
-                    <td>{driv?.vehicle?.vehicleType}</td>
+                    <td>{driv?.vehicle.vehicleType}</td>
                 </tr>
-                  <tr>
+                <tr>
                     <td> Model</td>
-                    <td>{driv?.vehicle?.model}</td>
+                    <td>{driv?.vehicle.model}</td>
                 </tr>
-                  <tr>
+                <tr>
                     <td> License </td>
-                    <td>{driv?.vehicle?.license}</td>
+                    <td>
+                        <img style={{width: 100}} src={driv?.vehicle?.license} alt="No img" />
+                    </td>
                 </tr>
-                  <tr>
+                <tr>
                     <td> Vehicle Type</td>
-                    <td>{driv?.vehicle?.insurance}</td>
+                    <td>
+                        <img style={{width: 100}} src={driv?.vehicle?.insurance} alt="No img" />
+                    </td>
                 </tr>
-                  <tr>
-                    <td> Vehicle Reg No</td>
-                    <td>{driv?.vehicle?.vehicleRegNo}</td>
+                <tr>
+                    <td> Vehicle Reg</td>
+                    <td>
+                        <img style={{width: 100}} src={driv?.vehicle?.vehicleRegNo} alt="No img" />
+                    </td>
                 </tr>
-                
 
             </table>
+            
             <Button type='button' className='btn-btn-warning' onClick={handleEnable} >Enable</Button>
              <br/>
              <br/>

@@ -21,9 +21,9 @@ function Prathees() {
         <>
         <div>
         <ul>
-                            <li className={type === "profile" ? "active" : ""} style={{width:"33.33%"}}><Link class="active" to={'/admin/passenger/profile/'+id }>Profile</Link></li>
-                            <li className={type === "payment" ? "active" : ""} style={{width:"33.33%"}}><Link  to={'/admin/passenger/payment/'+id }>Payment</Link></li>
-                           { <li className={type === "tripHistory" ? "active" : ""} style={{width:"33.33%"}}><Link to={'/admin/passenger/tripHistory/'+id}>Trip History</Link></li>}
+                            <li className={type === "profile" ? "active" : ""} style={{width:"50%"}}><Link class="active" to={'/admin/passenger/profile/'+id }>Profile</Link></li>
+                           {/*  <li className={type === "payment" ? "active" : ""} style={{width:"33.33%"}}><Link  to={'/admin/passenger/payment/'+id }>Payment</Link></li> */}
+                           { <li className={type === "tripHistory" ? "active" : ""} style={{width:"50%"}}><Link to={'/admin/passenger/tripHistory/'+id}>Trip History</Link></li>}
                             
   </ul>
     </div>
